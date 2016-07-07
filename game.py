@@ -50,7 +50,7 @@ def play_game(name):
         if current_round < low_num_tries:
             low_num_tries = current_round
         answer = raw_input("Do you want to play the game? Y or N: ")
-    print "Good-bye!, your high score was: %s and your low score was: %s" % (high_num_tries, low_num_tries)
+    print "Good-bye!, your worst score was: %s and your best score was: %s" % (high_num_tries, low_num_tries)
 
 
 user_name = raw_input("What is your name? ")
