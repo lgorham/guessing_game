@@ -1,34 +1,64 @@
 # Put your code here
 import random
 
-def isInt(guess):
+def is_int(guess):
+    """"evaluates if input is integer in range"""
     try:
-        int_guess = int(str_guess)
-        return True
-    except:
+        int_guess = int(guess)
+        print int_guess
+    except: 
+        # if it's not a string of an integer (letters, float, etc)
         return False
-
-    # return type(guess) is int
+    # will only get here if try clause works
+    if int_guess <= 100 and int_guess >= 1:
+        return True
+    else:
+        return False
  
-def guessGame(name, random_int):
-    str_guess = raw_input("Hello %s Pick an integer between 1 and 100: " % name)
-    evaluate_input = isInt(str_guess)
-    if evaluate_input == True:
-        previous_guesses = []
-        while guess != random_int:
+
+def guess_game(name, random_int):
+    """"evaluates if user guess matches random integer"""
+    guess = 0
+    previous_guesses = []
+    while guess != random_int:
+        guess = raw_input("%s, enter a guess between 1 - 100: " % name)
+        evaluate_input = is_int(guess)
+        if evaluate_input == True:
+            guess = int(guess)
             if guess < random_int:
                 print "Guess is too low, try again"
             elif guess > random_int:
                 print "Guess is too high, try again"
-            previous_guesses.append(guess)
-            guess = int(raw_input("Enter a new guess: "))
-    else:
-        print "That is not a valid number between 1-100:"
-        # guessGame(name, random_int)
+        else:
+            print "That is not a valid number between 1-100:"
+        previous_guesses.append(guess)
 
-    print "You guessed it %s! It took you %s tries" % (name, histlen(previous_guesses))
+    print "You guessed it %s! It took you %s tries" % (name, len(previous_guesses))
 
 
 user_name = raw_input("What is your name? ")
 random = random.randint(1,100)
-guessGame(user_name, random)
+print random
+guess_game(user_name, random)
+
+
+
+
+    # guess = raw_input("Hello %s Pick an integer between 1 and 100: " % name)
+    # previous_guesses = []
+    # while guess != random_int:
+    #     evaluate_input = is_int(guess)
+    #     print "evaluate input", evaluate_input
+    #     if evaluate_input == True:
+    #         guess = int(guess)
+    #         if guess < random_int:
+    #             print "Guess is too low, try again"
+    #         elif guess > random_int:
+    #             print "Guess is too high, try again"
+    #         previous_guesses.append(guess)
+    #     else:
+    #         print "That is not a valid number between 1-100:"
+    #         # guessGame(name, random_int)
+    #     guess = raw_input("Enter a new guess: ")
+    # print "You guessed it %s! It took you %s tries" % (name, len(previous_guesses))
+
