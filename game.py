@@ -30,16 +30,31 @@ def guess_game(name, random_int):
             elif guess > random_int:
                 print "Guess is too high, try again"
         else:
-            print "That is not a valid number between 1-100:"
+            print "That is not a valid integer between 1-100:"
         previous_guesses.append(guess)
 
     print "You guessed it %s! It took you %s tries" % (name, len(previous_guesses))
+    number_of_tries = len(previous_guesses)
+    return number_of_tries
+
+def play_game(name):
+    answer = "Y"
+    low_num_tries = 500
+    high_num_tries = 0
+    while answer == 'Y':
+        comp_random = random.randint(1,100)
+        print comp_random
+        current_round = guess_game(name, comp_random)
+        if current_round > high_num_tries:
+            high_num_tries = current_round
+        if current_round < low_num_tries:
+            low_num_tries = current_round
+        answer = raw_input("Do you want to play the game? Y or N: ")
+    print "Good-bye!, your high score was: %s and your low score was: %s" % (high_num_tries, low_num_tries)
 
 
 user_name = raw_input("What is your name? ")
-random = random.randint(1,100)
-print random
-guess_game(user_name, random)
+play_game(user_name)
 
 
 
